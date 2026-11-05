@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d10">
+<title>MotoEstimaion V3</title>
+<style>
+:root{--bg:#090b0e;--panel:#15191f;--panel2:#1c2129;--line:#343b45;--gold:#f3bd42;--gold2:#ffdc83;--muted:#aeb5c0;--text:#f7f8fa;--green:#4bd18a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#332719 0,#101318 34%,var(--bg) 72%);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+button,input,select{font:inherit}button{cursor:pointer}.app{max-width:720px;margin:auto;padding:16px 14px calc(92px + env(safe-area-inset-bottom))}
+header{display:flex;justify-content:space-between;align-items:center;padding:8px 2px 18px}.brand{font-size:25px;font-weight:950;letter-spacing:.2px}.brand span{color:var(--gold)}.sub{font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:3px}.lang{border:1px solid var(--line);background:#171b21;border-radius:30px;padding:4px;color:var(--muted)}.lang button{border:0;background:none;color:inherit;padding:6px 9px;border-radius:20px}.lang .on{background:var(--gold);color:#17130a;font-weight:800}
+.page{display:none}.page.active{display:block}.hero{padding:22px 18px;border:1px solid #66502a;border-radius:20px;background:linear-gradient(135deg,#292218,#15181d 58%,#111317);position:relative;overflow:hidden;margin-bottom:16px}.hero:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #8c692b;border-radius:50%;right:-65px;top:-75px;box-shadow:0 0 0 15px #f3bd420b,0 0 0 34px #f3bd4208}.eyebrow{font-size:10px;color:var(--gold2);letter-spacing:2px;font-weight:800}.hero h1{font-size:26px;line-height:1.2;margin:9px 0}.hero p{font-size:13px;color:#c8cbd1;max-width:80%;line-height:1.6;margin:0}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:20px 2px 11px}.section-head h2{font-size:17px;margin:0}.muted{color:var(--muted);font-size:12px}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.tile{background:linear-gradient(145deg,#20252d,#12161b);border:1px solid var(--line);border-radius:16px;padding:17px 14px;text-align:left;color:var(--text);min-height:112px}.tile:active,.btn:active{transform:scale(.985)}.tile .ico{font-size:25px;color:var(--gold);display:block;margin-bottom:9px}.tile b{display:block;font-size:15px}.tile small{color:var(--muted);font-size:11px}
+.card{background:linear-gradient(145deg,#1a1e25,#111419);border:1px solid var(--line);border-radius:17px;padding:16px;margin:12px 0}.card h3{font-size:15px;margin:0 0 13px;color:var(--gold2)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field label{display:block;color:#d6dae0;font-size:12px;margin:0 0 6px}.field input,.field select{width:100%;min-width:0;background:#0c0f13;border:1px solid #424a55;border-radius:10px;padding:12px;color:white;font-size:16px;outline:none}.field input:focus,.field select:focus{border-color:var(--gold);box-shadow:0 0 0 2px #f3bd4220}.field.full{grid-column:1/-1}
+.btn{border:0;border-radius:11px;padding:13px 15px;font-weight:800}.primary{background:linear-gradient(135deg,var(--gold2),#d99b20);color:#211806}.secondary{background:#252b34;border:1px solid #444c58;color:#f5f6f8}.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}.wide{width:100%;margin-top:12px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.actions .btn{flex:1}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{padding:13px;background:#0e1217;border:1px solid #343b45;border-radius:13px}.metric small{display:block;color:var(--muted);font-size:11px}.metric strong{display:block;color:var(--gold2);font-size:24px;margin-top:4px;font-variant-numeric:tabular-nums}.metric em{font-size:11px;color:var(--muted);font-style:normal}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#101318f5;backdrop-filter:blur(14px);border-top:1px solid #343b45;padding:8px 5px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center;z-index:5}.navin{width:min(720px,100%);display:grid;grid-template-columns:repeat(5,1fr)}.nav button{border:0;background:none;color:#9299a4;font-size:10px;padding:5px 0}.nav button span{display:block;font-size:20px;margin-bottom:3px}.nav button.active{color:var(--gold2);font-weight:800}
+.listrow{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #303640}.listrow:last-child{border:0}.listrow b{font-size:13px}.listrow small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.empty{color:var(--muted);font-size:13px;text-align:center;padding:18px 5px}
+.note{font-size:11px;color:var(--muted);line-height:1.65;margin:12px 1px}.pill{display:inline-block;border-radius:30px;background:#123b2a;color:#7ee5ae;padding:5px 9px;font-size:10px}
+@media(max-width:390px){.grid{gap:8px}.field input{padding:10px 8px}.app{padding-left:11px;padding-right:11px}.hero p{max-width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div><div class="brand">Moto<span>Estimaion</span></div><div class="sub">MOTORCYCLE ENGINE TOOLKIT · V3</div></div><div class="lang"><button id="th" class="on">TH</button><button id="en">EN</button></div></header>
+
+<section id="home" class="page active">
+ <div class="hero"><div class="eyebrow">ENGINE WORKSHOP TOOLKIT</div><h1>คำนวณให้ชัด<br>เทียบสเปกได้ง่าย</h1><p>เครื่องมือช่วยคำนวณและจัดเก็บข้อมูลเครื่องยนต์มอเตอร์ไซค์ในที่เดียว</p></div>
+ <div class="tiles">
+  <button class="tile" onclick="go('calc')"><span class="ico">▦</span><b>คำนวณสเปก</b><small>Bore · Stroke · CC · CR</small></button>
+  <button class="tile" onclick="go('compare')"><span class="ico">⇄</span><b>เปรียบเทียบ</b><small>เทียบเครื่องยนต์ 2 ชุด</small></button>
+  <button class="tile" onclick="go('saved')"><span class="ico">▣</span><b>สเปกที่บันทึก</b><small>เก็บข้อมูลไว้ในเครื่อง</small></button>
+  <button class="tile" onclick="go('guide')"><span class="ico">ⓘ</span><b>คู่มือการใช้งาน</b><small>คำอธิบายสูตรและหน่วย</small></button>
+ </div>
+ <div class="section-head"><h2>สเปกล่าสุด</h2><span class="muted">บันทึกในอุปกรณ์นี้</span></div>
+ <div class="card" id="homeRecent"><div class="empty">ยังไม่มีสเปกที่บันทึก</div></div>
+ <p class="note">หมายเหตุ: ค่าที่คำนวณเป็นค่าทางเรขาคณิตจากข้อมูลที่กรอก ไม่ใช่การรับรองความปลอดภัยหรือสมรรถนะของเครื่องยนต์ ควรวัดและตรวจสอบกับคู่มือรุ่นรถจริง</p>
+</section>
+
+<section id="calc" class="page">
+ <div class="section-head"><h2>คำนวณสเปกเครื่องยนต์</h2><span class="pill">AUTO CALC</span></div>
+ <div class="card"><h3>01 · ข้อมูลพื้นฐาน</h3><div class="grid">
+  <div class="field full"><label>เลือกรุ่นอ้างอิง (ไม่บังคับ)</label><select id="preset"><option value="">กรอกค่าด้วยตนเอง</option><option value="50|55.6">Honda Wave 110i · ตัวอย่างอ้างอิง</option><option value="52.4|57.9">Honda Wave 125i · ตัวอย่างอ้างอิง</option><option value="50|57.9">Yamaha Finn 115 · ตัวอย่างอ้างอิง</option><option value="52.4|57.9">Honda Click 125i · ตัวอย่างอ้างอิง</option></select></div>
+  <div class="field"><label>จำนวนสูบ</label><input id="cyl" type="number" min="1" step="1" value="1"></div>
+  <div class="field"><label>Bore · ขนาดลูกสูบ (มม.)</label><input id="bore" type="number" min=".01" step=".01" value="52.4"></div>
+  <div class="field"><label>Stroke · ช่วงชัก (มม.)</label><input id="stroke" type="number" min=".01" step=".01" value="55.6"></div>
+  <div class="field"><label>Chamber · ห้องเผาไหม้/สูบ (ซีซี)</label><input id="chamber" type="number" min=".01" step=".01" value="10"></div>
+ </div></div>
+ <div class="card"><h3>02 · ฝาสูบและลูกสูบ</h3><div class="grid">
+  <div class="field"><label>รูปะเก็น (มม.)</label><input id="gbore" type="number" min=".01" step=".01" value="53"></div>
+  <div class="field"><label>ความหนาปะเก็น (มม.)</label><input id="gasket" type="number" min="0" step=".01" value=".5"></div>
+  <div class="field"><label>Deck clearance (มม.)</label><input id="deck" type="number" step=".01" value="0"></div>
+  <div class="field"><label>ปริมาตรหัวลูกสูบ (ซีซี)</label><input id="crown" type="number" step=".01" value="0"></div>
+ </div><p class="note">หัวลูกสูบบวก = หลุม (Dish) · ค่าลบ = หัวนูน (Dome) ให้กรอกตามค่าที่วัดจริง</p></div>
+ <div class="card"><h3>03 · ผลการคำนวณ</h3><div class="metrics">
+  <div class="metric"><small>ความจุต่อสูบ</small><strong id="per">—</strong><em>cc</em></div>
+  <div class="metric"><small>ความจุรวม</small><strong id="total">—</strong><em>cc</em></div>
+  <div class="metric"><small>อัตราส่วนกำลังอัด</small><strong id="cr">—</strong><em> : 1</em></div>
+  <div class="metric"><small>ปริมาตรเคลียร์แรนซ์</small><strong id="clear">—</strong><em>cc / สูบ</em></div>
+ </div><div class="listrow"><span>ปริมาตรปะเก็น</span><b id="gvol">—</b></div><div class="listrow"><span>ปริมาตร Deck</span><b id="dvol">—</b></div><div class="listrow"><span>Squish โดยประมาณ*</span><b id="squish">—</b></div>
+ <div class="actions"><button class="btn primary" id="saveSpec">บันทึกสเปกนี้</button><button class="btn secondary" id="share">แชร์ผลลัพธ์</button></div>
+ <p class="note">* Squish ในหน้านี้เป็นเพียงผลบวกความหนาปะเก็นกับ Deck clearance ไม่ใช่ค่าระยะ Squish ที่วัดได้จริง</p></div>
+</section>
+
+<section id="compare" class="page">
+ <div class="section-head"><h2>เปรียบเทียบสเปก</h2><span class="muted">A / B</span></div>
+ <div class="card"><h3>ชุด A · ค่าปัจจุบัน</h3><div id="compareA" class="empty">กรอกข้อมูลในหน้าคำนวณก่อน</div></div>
+ <div class="card"><h3>ชุด B · สเปกที่ต้องการเทียบ</h3><div class="grid">
+  <div class="field"><label>Bore (มม.)</label><input id="bBore" type="number" step=".01" value="54"></div><div class="field"><label>Stroke (มม.)</label><input id="bStroke" type="number" step=".01" value="57.9"></div>
+  <div class="field"><label>จำนวนสูบ</label><input id="bCyl" type="number" step="1" value="1"></div><div class="field"><label>Chamber (ซีซี)</label><input id="bChamber" type="number" step=".01" value="10"></div>
+ </div><button class="btn primary wide" id="doCompare">เปรียบเทียบ</button><div id="compareB"></div></div>
+</section>
+
+<section id="saved" class="page">
+ <div class="section-head"><h2>สเปกที่บันทึก</h2><span class="muted">Local storage</span></div><div class="card" id="savedList"><div class="empty">ยังไม่มีข้อมูล</div></div>
+</section>
+<section id="guide" class="page">
+ <div class="section-head"><h2>คู่มือและสูตรคำนวณ</h2></div>
+ <div class="card"><h3>ค่าที่ต้องใช้</h3><div class="listrow"><span>Bore</span><b>เส้นผ่านศูนย์กลางกระบอกสูบ</b></div><div class="listrow"><span>Stroke</span><b>ระยะชักลูกสูบ</b></div><div class="listrow"><span>Chamber</span><b>ปริมาตรห้องเผาไหม้ต่อสูบ</b></div><div class="listrow"><span>Deck</span><b>ระยะลูกสูบเทียบหน้าบล็อก</b></div></div>
+ <div class="card"><h3>สูตรหลัก</h3><p class="note">พื้นที่หน้าตัด = π ÷ 4 × Bore²</p><p class="note">ความจุต่อสูบ (cc) = พื้นที่หน้าตัด × Stroke ÷ 1,000</p><p class="note">ความจุรวม = ความจุต่อสูบ × จำนวนสูบ</p><p class="note">อัตราส่วนกำลังอัด = (ความจุต่อสูบ + Clearance volume) ÷ Clearance volume</p></div>
+ <div class="card"><h3>ข้อควรระวัง</h3><p class="note">ฐานข้อมูลรุ่นรถเป็นค่าอ้างอิงเบื้องต้น อาจต่างกันตามปีผลิตและประเทศที่จำหน่าย ควรตรวจสอบคู่มือซ่อมและค่าที่วัดจริงเสมอ ไม่ควรใช้ผลคำนวณนี้แทนการตรวจสอบทางกลไกโดยช่างผู้ชำนาญ</p></div>
+</section>
+</div>
+<nav class="nav"><div class="navin">
+ <button class="active" data-go="home"><span>⌂</span>หน้าหลัก</button><button data-go="calc"><span>▦</span>คำนวณ</button><button data-go="saved"><span>▣</span>บันทึก</button><button data-go="compare"><span>⇄</span>เทียบ</button><button data-go="guide"><span>ⓘ</span>คู่มือ</button>
+</div></nav>
+<script>
+const $=id=>document.getElementById(id);
+let last=null;
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.go===id));if(id==='compare')showA();if(id==='saved')renderSaved();if(id==='home')renderRecent();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+$('preset').addEventListener('change',e=>{if(!e.target.value)return;const [b,s]=e.target.value.split('|');$('bore').value=b;$('stroke').value=s;calc()});
+const ids=['cyl','bore','stroke','chamber','gbore','gasket','deck','crown'];
+function readSpec(){const v=Object.fromEntries(ids.map(k=>[k,Number($(k).value)]));if(ids.some(k=>$(k).value.trim()===''||!Number.isFinite(v[k]))||v.cyl<1||!Number.isInteger(v.cyl)||v.bore<=0||v.stroke<=0||v.chamber<=0||v.gbore<=0||v.gasket<0)return null;const area=Math.PI*v.bore*v.bore/4,per=area*v.stroke/1000,gvol=Math.PI*v.gbore*v.gbore/4*v.gasket/1000,dvol=area*v.deck/1000,clear=v.chamber+gvol+dvol+v.crown;if(clear<=0)return null;return {...v,per,total:per*v.cyl,gvol,dvol,clear,cr:(per+clear)/clear,squish:v.gasket+v.deck}}
+function fmt(n,d=2){return Number(n).toFixed(d)}
+function calc(){last=readSpec();if(!last){['per','total','cr','clear','gvol','dvol','squish'].forEach(k=>$(k).textContent='—');return false}const x=last;$('per').textContent=fmt(x.per);$('total').textContent=fmt(x.total);$('cr').textContent=fmt(x.cr);$('clear').textContent=fmt(x.clear);$('gvol').textContent=fmt(x.gvol,3)+' cc';$('dvol').textContent=fmt(x.dvol,3)+' cc';$('squish').textContent=fmt(x.squish,3)+' mm';return true}
+ids.forEach(id=>$(id).addEventListener('input',calc));calc();
+function specText(x){return `Bore ${x.bore} mm · Stroke ${x.stroke} mm · ${x.cyl} สูบ | ${fmt(x.total)} cc | CR ${fmt(x.cr)}:1`}
+$('saveSpec').onclick=()=>{if(!calc())return alert('กรุณาตรวจสอบค่าที่กรอก');const arr=JSON.parse(localStorage.getItem('moto_v3_specs')||'[]');arr.unshift({...last,name:'สเปก '+new Date().toLocaleString('th-TH'),date:Date.now()});localStorage.setItem('moto_v3_specs',JSON.stringify(arr.slice(0,30)));alert('บันทึกสเปกแล้ว');renderSaved();renderRecent()};
+$('share').onclick=async()=>{if(!calc())return alert('กรุณาตรวจสอบค่าที่กรอก');const x=last;const t=`MotoEstimaion V3\\n${specText(x)}\\nความจุต่อสูบ ${fmt(x.per)} cc\\nอัตราส่วนกำลังอัด ${fmt(x.cr)}:1`;if(navigator.share){try{await navigator.share({title:'MotoEstimaion',text:t})}catch(e){}}else if(navigator.clipboard){await navigator.clipboard.writeText(t);alert('คัดลอกผลลัพธ์แล้ว')}else prompt('คัดลอกผลลัพธ์',t)};
+function getSaved(){try{return JSON.parse(localStorage.getItem('moto_v3_specs')||'[]')}catch(e){return []}}
+function renderSaved(){const a=getSaved();$('savedList').innerHTML=a.length?a.map((x,i)=>`<div class="listrow"><div><b>${x.name}</b><small>${specText(x)}</small></div><button class="btn ghost" onclick="loadSaved(${i})">ใช้</button></div>`).join(''):'<div class="empty">ยังไม่มีสเปกที่บันทึก</div>'}
+function loadSaved(i){const x=getSaved()[i];if(!x)return;ids.forEach(k=>$(k).value=x[k]);calc();go('calc')}
+function renderRecent(){const a=getSaved();$('homeRecent').innerHTML=a.length?`<div class="listrow"><div><b>${a[0].name}</b><small>${specText(a[0])}</small></div><button class="btn ghost" onclick="loadSaved(0)">เปิด</button></div>`:'<div class="empty">ยังไม่มีสเปกที่บันทึก</div>'}
+function showA(){if(!calc()){$('compareA').textContent='กรอกข้อมูลในหน้าคำนวณก่อน';return}$('compareA').innerHTML=`<div class="metrics"><div class="metric"><small>ความจุรวม</small><strong>${fmt(last.total)}</strong><em>cc</em></div><div class="metric"><small>กำลังอัด</small><strong>${fmt(last.cr)}</strong><em>:1</em></div></div><p class="note">${specText(last)}</p>`}
+$('doCompare').onclick=()=>{if(!calc())return alert('กรุณากรอกชุด A ในหน้าคำนวณก่อน');const b={bore:Number($('bBore').value),stroke:Number($('bStroke').value),cyl:Number($('bCyl').value),chamber:Number($('bChamber').value)};if(Object.values(b).some(v=>!Number.isFinite(v)||v<=0)||!Number.isInteger(b.cyl))return alert('ตรวจสอบข้อมูลชุด B');const per=Math.PI*b.bore*b.bore/4*b.stroke/1000,total=per*b.cyl;$('compareB').innerHTML=`<div class="metrics" style="margin-top:13px"><div class="metric"><small>ความจุรวมชุด B</small><strong>${fmt(total)}</strong><em>cc</em></div><div class="metric"><small>ต่างจากชุด A</small><strong>${fmt(total-last.total)}</strong><em>cc</em></div></div><p class="note">${specText({...b,total,cr:NaN})}</p>`};
+$('th').onclick=()=>alert('ขณะนี้ใช้ภาษาไทย');$('en').onclick=()=>alert('English interface is planned for a future update.');
+renderSaved();renderRecent();
+</script>
+</body></html>
